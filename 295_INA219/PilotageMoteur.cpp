@@ -5,11 +5,14 @@
 #include "GestionINA219.h"
 #include "GestionPinGPIO.h"
 
-// Valeur a modifier en fonction du moteur
+// Valeurs a modifier en fonction du moteur
 // C'est la consommation du moteur plus 20%
-#define valeurMaxmA 25.0 
+#define valeurMaxmA 25.0
+// C'est le nombre d'erreurs avant coupure defintive
 #define nombreErreur 3
+// C'est le temps d'arret du moteur apres une erreur
 #define tempsArretErreur 700 
+// C'est la temporisation pour que le moteur atteigne son courant de fonctionnement
 #define tempoLancementMoteur 300
 
 using namespace std;
