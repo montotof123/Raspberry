@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery Gauge Plugin Demos</title>
+	</head>
+	<body>
+        <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="/public/jquery.gauge.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+
+		<h1 style="margin:150px auto 30px auto; color:#555;">jQuery Gauge Plugin Demos</h1>
+		<table>
+			<tr>
+				<th><h1>Tension</h1></th>
+				<th><h1>Courant</h1></th>
+		    </tr>
+		    <tr>
+				<td><canvas id="tension" width="400" height="400"></canvas></td>
+				<td><canvas id="courant" width="400" height="400"></canvas></td>
+			</tr>
+		</table>
+		<script>
+
+			// Connexion au serveur
+            var socket = io.connect('http://192.168.1.20:8080');
+			// Message d'activation venant du serveur du bouton via l'interruption, 
+			// dessin de la LED allumée
+			socket.on('Tension', function(valeur) {
+				$("#tension").gauge(valeur, {color: "#8BC34A", unit: " Volt", font: "40px verdana", max: "5"});
+			}) 
+			socket.on('Courant', function(valeur) {
+				$("#courant").gauge(valeur, {color: "#F44336", unit: " mA", font: "40px verdana", max: "5"});
+			}) 
+
+
+		</script>
+	</body>
+</html>

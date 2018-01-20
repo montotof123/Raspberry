@@ -1,0 +1,11 @@
+{
+    "name": "MesureGraphique",
+    "version": "0.1.0",
+    "dependencies": {
+        "http": "latest",
+        "fs": "latest",
+        "socket.io": "latest",
+        "ina219": "latest",
+		"i2c-bus": "latest"
+    }
+}
