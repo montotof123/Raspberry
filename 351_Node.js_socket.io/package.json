@@ -1,0 +1,10 @@
+{
+    "name": "Socket LED",
+    "version": "0.1.0",
+    "dependencies": {
+        "http": "latest",
+        "fs": "latest",
+        "socket.io": "latest",
+        "wiringpi-node": "latest"
+    }
+}

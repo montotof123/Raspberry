@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Socket.io</title>
+    </head>
+ 
+    <body>
+        <h1>Communication avec socket.io !</h1>
+
+        <script src="http://code.jquery.com/jquery.min.js"></script>
+        <p><input type="button" value="Allumer LED" id="ledon" /></p>
+        <p><input type="button" value="Eteindre LED" id="ledoff" /></p>
+        <p><input type="button" value="Basculer LED" id="ledbasc" /></p>
+        <p><input type="button" value="Clignotement LED" id="ledclign" /></p>
+        <canvas id="led_canvas" width="100" height="100"></canvas>
+		<img id="image_led" src="/templates/vide.jpg" alt="LED" title="LED" />
+        <script src="/public/canvas.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+        <script>
+			// Connexion au serveur
+            var socket = io.connect('http://192.168.1.20:8080');
+			
+			// Message de connexion venant du serveur
+			socket.on('toclient', function(message) {
+				alert('Message du serveur : ' + message);
+			}) 
+
+			// Message d'activation venant du serveur du bouton via l'interruption, 
+			// dessin de la LED allumée
+			socket.on('switch', function(message) {
+				canvasOn();
+			}) 
+
+			// Message de retour de la demande de bascule pour dessiner la LED dans le bon état
+			socket.on('Led', function(message) {
+				if(message == 'On') {
+					canvasOn();
+				}
+				if(message == 'Off') {
+					canvasOff();
+				}
+			})   
+
+			// Clic sur le bouton d'allumage de la LED
+			// Dessin de la LED allumée et message au serveur pour allumer la LED
+            $('#ledon').click(function () {
+                canvasOn();
+				socket.emit('ledOn', 'Allumer LED');
+
+            })
+ 
+			// Clic sur le bouton d'extintion de la LED
+			// Dessin de la LED eteinte et message au serveur pour eteindre la LED
+			$('#ledoff').click(function () {
+				canvasOff();
+				socket.emit('ledOff', 'Eteindre LED');
+            })
+ 
+			// Clic sur le bouton de bascule de la LED
+			// Message au serveur pour basculer la LED
+			// Le dessin se fera par le réenvoie d'un message par le serveur (Led On/Off)
+			// On ne peut pas dessiner la LED ici car on ne connait pas son état
+			$('#ledbasc').click(function () {
+                socket.emit('ledBasc', 'Basculer LED');
+            })
+			
+			// Clic sur le bouton de clignotement de la LED
+			// Message au serveur pour faire clignoter la LED
+			// Le dessin se fera par le réenvoie de messages par le serveur (Led On/Off)
+			$('#ledclign').click(function () {
+				socket.emit('ledClign', 'Clignotement LED');
+			})
+		</script>
+    </body>
+</html>
