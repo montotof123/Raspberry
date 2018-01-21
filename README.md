@@ -114,22 +114,22 @@ style='font-size:14.0pt;line-height:107%'>-<span style='font:7.0pt "Times New Ro
 
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
 style='font-size:14.0pt;line-height:107%'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:14.0pt;line-height:107%'>Moteurs pas à pas</span></p>
+</span></span><span style='font-size:14.0pt;line-height:107%'>Moteurs pas Ã  pas (C++)</span></p>
 
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
 style='font-size:14.0pt;line-height:107%'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:14.0pt;line-height:107%'>Contrôle de la
-vitesse d'un moteur avec barrière laser</span></p>
+</span></span><span style='font-size:14.0pt;line-height:107%'>ContrÃ´le de la
+vitesse d'un moteur avec barriÃ¨re laser (C++)</span></p>
 
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
 style='font-size:14.0pt;line-height:107%'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:14.0pt;line-height:107%'>Accéléromètre,
-gyromètre MCU6050 (C++)</span></p>
+</span></span><span style='font-size:14.0pt;line-height:107%'>AccÃ©lÃ©romÃ¨tre,
+gyromÃ¨tre MCU6050 (C++)</span></p>
 
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
 style='font-size:14.0pt;line-height:107%'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span style='font-size:14.0pt;line-height:107%'>Mesure de
-température DS18B20 (C++)</span></p>
+tempÃ©rature DS18B20 (C++)</span></p>
 
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
 style='font-size:14.0pt;line-height:107%'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -139,21 +139,21 @@ style='font-size:14.0pt;line-height:107%'>-<span style='font:7.0pt "Times New Ro
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
 style='font-size:14.0pt;line-height:107%'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span style='font-size:14.0pt;line-height:107%'>Mesure de
-luminosité BH1750 (C++)</span></p>
+luminositÃ© BH1750 (C++)</span></p>
 
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
 style='font-size:14.0pt;line-height:107%'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:14.0pt;line-height:107%'>Baromètre,
-température, humidité BME280 (C++)</span></p>
+</span></span><span style='font-size:14.0pt;line-height:107%'>BaromÃ¨tre,
+tempÃ©rature, humiditÃ© BME280 (C++)</span></p>
 
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
 style='font-size:14.0pt;line-height:107%'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:14.0pt;line-height:107%'>Télémètre à ultrason
+</span></span><span style='font-size:14.0pt;line-height:107%'>TÃ©lÃ©mÃ¨tre Ã  ultrason
 HC-SR04 (C++)</span></p>
 
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
 style='font-size:14.0pt;line-height:107%'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:14.0pt;line-height:107%'>Afficheur à cristaux
+</span></span><span style='font-size:14.0pt;line-height:107%'>Afficheur Ã  cristaux
 liquide 1602A (C++)</span></p>
 
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
@@ -168,7 +168,7 @@ et courants INA219, INA3221 (C++, Node.js)</span></p>
 
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
 style='font-size:14.0pt;line-height:107%'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:14.0pt;line-height:107%'>Magnétomètre
+</span></span><span style='font-size:14.0pt;line-height:107%'>MagnÃ©tomÃ¨tre
 HMC5883, HMC5983 (C++)</span></p>
 
 <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
