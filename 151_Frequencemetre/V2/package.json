@@ -1,0 +1,11 @@
+{
+    "name": "Frequencemetre",
+    "version": "0.1.0",
+    "dependencies": {
+        "http": "latest",
+        "fs": "latest",
+        "socket.io": "latest",
+        "onoff": "latest",
+ 		"process.hrtime": "latest"
+   }
+}

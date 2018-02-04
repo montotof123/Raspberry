@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Fréquencemètre</title>
+    </head>
+ 
+    <body>
+        <h1><center>Fréquencemètre</center></h1>
+
+        <script src="http://code.jquery.com/jquery.min.js"></script>
+        <center><p id="frequence" style="color:#0000FF"></p></center>
+		<script src="/socket.io/socket.io.js"></script>
+        <script>
+			// Connexion au serveur
+            var socket = io.connect('http://192.168.1.20:8080');
+
+			// Affiche la fréquence calcullée entre deux interruptions
+			socket.on('affiche', function(frequence) {
+				$('#frequence').text("Fréquence: " + frequence + " Hz").css("fontSize", 150);
+			}) 
+		</script>
+    </body>
+</html>
