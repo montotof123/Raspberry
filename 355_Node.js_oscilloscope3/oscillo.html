@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Oscilloscope</title>
+	</head>
+	<body>
+        <script src="http://code.jquery.com/jquery.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+
+		<h1 style="margin:15px auto 30px auto; color:#555;">Oscilloscope</h1>
+        <select name="canal" id="canal" size = "1">
+			<option value = "0">canal 0</option>
+			<option value = "1">canal 1</option>
+			<option value = "2">canal 2</option>
+			<option value = "3">canal 3</option>
+			<option value = "4">canal 4</option>
+			<option value = "5">canal 5</option>
+			<option value = "6">canal 6</option>
+			<option value = "7" selected>canal 7</option>
+		</select>
+		Nombre mesures
+		<select name="nbMesure" id="nbMesure" size = "1">
+			<option value = "100">100</option>
+			<option value = "200">200</option>
+			<option value = "500">500</option>
+			<option value = "1000" selected>1000</option>
+			<option value = "2000">2000</option>
+			<option value = "5000">5000</option>
+			<option value = "10000">10000</option>
+			<option value = "20000">20000</option>
+			<option value = "50000">50000</option>
+			<option value = "100000">100000</option>
+		</select>
+        <input type="button" value="Lancer mesures" id="startMesure" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		Echelle
+		<select name="echelle" id="echelle" size = "1">
+			<option value = "0.001">x 0.001</option>
+			<option value = "0.002">x 0.002</option>
+			<option value = "0.005">x 0.005</option>
+			<option value = "0.01">x 0.01</option>
+			<option value = "0.02">x 0.02</option>
+			<option value = "0.05">x 0.05</option>
+			<option value = "0.1">x 0.1</option>
+			<option value = "0.2">x 0.2</option>
+			<option value = "0.5">x 0.5</option>
+			<option value = "1" selected>x 1</option>
+			<option value = "2">x 2</option>
+			<option value = "5">x 5</option>
+			<option value = "10">x 10</option>
+			<option value = "20">x 20</option>
+			<option value = "50">x 50</option>
+			<option value = "100">x 100</option>
+			<option value = "200">x 200</option>
+			<option value = "500">x 500</option>
+			<option value = "1000">x 1000</option>
+		</select>
+        <input type="button" value="Afficher mesures" id="afficheMesure" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		Fréquence
+		<input id="frequence" type="text" disabled>
+		<canvas id="canvas" width="1" height="1"></canvas>
+		<script>
+			// Connexion au serveur
+            var socket = io.connect('http://192.168.1.20:8080');
+
+			socket.on('afficheMesure', function(mesure) {
+				// declaration variable
+				var compteur;
+				var canvas = document.getElementById("canvas");
+				var context = canvas.getContext("2d");
+				
+				// dimension ecran
+				var larg = $(window).width();
+				var haut = $(window).height();
+				
+				// Dimension du canvas
+				canvas.height = haut - 150;
+				//canvas.width = larg - 30;
+				canvas.width = larg + 30000;
+				
+				// calcul min et max des valeurs arrondi à l'entier
+				var min = 1000;
+				var max = -1000;
+				for(compteur = 0; compteur != mesure.length; compteur++) {
+					if( min > parseFloat(mesure[compteur].valeur)) {
+						min = parseFloat(mesure[compteur].valeur);
+					}
+					if( max < parseFloat(mesure[compteur].valeur)) {
+						max = parseFloat(mesure[compteur].valeur);
+					}					
+				}
+				min = Math.trunc(min);
+				max = Math.trunc(max + 1.0);
+				var echelleHor = canvas.height / (max - min)
+				
+				// font
+				context.beginPath();
+				context.moveTo(0, 0);
+				context.lineTo(0, canvas.height);
+				context.lineTo(canvas.width, canvas.height);
+				context.lineTo(canvas.width, 0);
+				context.lineTo(0, 0);
+				context.fillStyle = "rgba(20, 20, 20, 0.3)";
+				context.fill();
+				
+				// entourage
+				context.beginPath();
+				context.moveTo(0, 0);
+				context.lineTo(0, canvas.height);
+				context.lineTo(canvas.width, canvas.height);
+				context.lineTo(canvas.width, 0);
+				context.lineTo(0, 0);
+				context.strokeStyle = "black";
+				context.stroke();
+				
+				// lignes horizontales
+				for(compteur = min + 1; compteur != max; compteur++) {
+					context.beginPath();
+					context.moveTo(0, canvas.height - compteur * echelleHor);
+					context.lineTo(canvas.width, canvas.height - compteur * echelleHor);
+					context.strokeStyle = "red";
+					context.stroke();
+					context.font = "20pt Calibri,Geneva,Arial";
+					context.fillStyle = "red";
+					if(compteur <= 1) {
+						context.fillText(compteur + " Volt", 10, canvas.height - compteur * echelleHor - 10);	
+					} else {
+						context.fillText(compteur + " Volts", 10, canvas.height - compteur * echelleHor - 10);	
+					}
+				}
+
+				// Lignes verticales
+				for(compteur = 100; compteur < larg + 30000; compteur += 100) {
+					context.beginPath();
+					context.moveTo(compteur, 0);
+					context.lineTo(compteur, canvas.height);
+					context.strokeStyle = "yellow";
+					context.stroke();
+					context.font = "10pt Calibri,Geneva,Arial";
+					context.fillStyle = "yellow";
+					var valeur = compteur / 100 / parseFloat($('#echelle').val());
+					context.fillText(valeur + " ms", compteur + 3, 10);
+				}
+				
+				// courbe
+				context.beginPath();
+				context.moveTo(0, mesure[0].valeur);
+				for(compteur = 0; compteur != mesure.length; compteur++) {
+					context.lineTo(mesure[compteur].horloge * 100000 * parseFloat($('#echelle').val()), canvas.height - mesure[compteur].valeur * echelleHor);
+				}
+				context.strokeStyle = "green";
+				context.stroke();
+				
+				// Calcul de la frequence avec 2 clic sur des points de la courbe
+				var elem = document.getElementById('canvas');
+				var elemLeft = elem.offsetLeft;
+				var elemTop = elem.offsetTop;
+				
+				var nbClic = 0;
+				var x = [];
+				var y = [];
+				elem.addEventListener('click', function(event) {
+					x[nbClic] = event.pageX - elemLeft;
+					y[nbClic] = event.pageY - elemTop;
+					nbClic++;
+					if(nbClic == 2) {
+						var valFrequence =  100000 * parseFloat($('#echelle').val()) / (x[1] - x[0]);
+						$('#frequence').val(valFrequence + " Hz");
+						nbClic = 0;
+					} else {
+						$('#frequence').val("");
+					}
+				}, false);
+			}) 
+			
+			// Lancement des mesures
+			$('#startMesure').click(function () {
+				socket.emit('startMesure', {canal: $('#canal').val(), nombre: $('#nbMesure').val()});
+            })
+			
+			// Affichage des mesures
+			$('#afficheMesure').click(function () {
+				socket.emit('afficheMesure', '');
+            })
+		</script>
+	</body>
+</html>
