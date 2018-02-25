@@ -32,6 +32,7 @@ Programmes pour Raspberry PI 3
 - Mesure de tensions et courants INA219, INA3221 (C++, Node.js)
 - Magnétomètre HMC5883, HMC5983 (C++)
 - Touches sensitives MPR121 (C++)
+- Module RFID RC522
 - SenseHat (C, C++)
 - Robotique (Java, C++)
 - Node.js (pilotage LED, mesure INA219, oscilloscope MCP3208)
