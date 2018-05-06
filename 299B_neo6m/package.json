@@ -1,0 +1,8 @@
+{
+    "name": "GPS-NEO-6M",
+    "version": "0.1.0",
+    "dependencies": {
+        "gps": "latest",
+		"serialport": "latest"
+    }
+}
