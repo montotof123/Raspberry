@@ -33,6 +33,10 @@ Programmes pour Raspberry PI 3
 - Magnétomètre HMC5883, HMC5983 (C++)
 - Touches sensitives MPR121 (C++)
 - Module RFID RC522
+- GPS Neo6M
+- Horloge DS1302
+- Relais
+- Générateur AD9833
 - SenseHat (C, C++)
 - Robotique (Java, C++)
 - Node.js (pilotage LED, mesure INA219, oscilloscope MCP3208)
