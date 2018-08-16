@@ -22,6 +22,8 @@ Programmes pour Raspberry PI 3
 - Moteurs pas à pas (C++)
 - Contrôle de la vitesse d’un moteur avec barrière laser (C++)
 - Accéléromètre, gyromètre MCU6050 (C++)
+- Modules divers (effet Hall, infraRouge, BMP180 etc...) (C++, Node.js)
+- Humidité DTH11, DTH22 (Node.js)
 - Mesure de température DS18B20 (C++)
 - EEPROM DS2431 (C++)
 - Mesure de luminosité BH1750 (C++)
@@ -32,11 +34,12 @@ Programmes pour Raspberry PI 3
 - Mesure de tensions et courants INA219, INA3221 (C++, Node.js)
 - Magnétomètre HMC5883, HMC5983 (C++)
 - Touches sensitives MPR121 (C++)
-- Module RFID RC522
-- GPS Neo6M
-- Horloge DS1302
-- Relais
-- Générateur AD9833
+- Module RFID RC522 (C++)
+- GPS Neo6M (C, Node.js)
+- Horloge DS1302 (C++)
+- Relais (C, C++, Python, Linux, Scratch, Node.js)
+- Amplificateur opérationnel programmable MCP6S28 (C++)
+- Générateur de signaux AD9833 (C++)
 - SenseHat (C, C++)
 - Robotique (Java, C++)
 - Node.js (pilotage LED, mesure INA219, oscilloscope MCP3208)
