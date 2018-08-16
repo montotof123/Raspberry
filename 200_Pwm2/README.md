@@ -1,2 +1,2 @@
-http://raspberrypi.pagesperso-orange.fr/
-http://raspberrypi.pagesperso-orange.fr/dossiers/26-06-05.htm
+- http://raspberrypi.pagesperso-orange.fr/
+- http://raspberrypi.pagesperso-orange.fr/dossiers/26-06-05.htm
