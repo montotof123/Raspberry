@@ -1,10 +1,10 @@
-//==========================================================
-// Name        : tstCompteTours.cpp
+﻿//=========================================
+// Name        : decTelecommande.cpp
 // Author      : totof
 // Version     :
 // Copyright   : Free
-// Description : Fait tourner un moteur à une vitesse donnée
-//==========================================================
+// Description : Decodage de la telecommande
+//==========================================
 
 #include <iostream>	  // impression cout
 #include <stdlib.h>   // La librairie standard
