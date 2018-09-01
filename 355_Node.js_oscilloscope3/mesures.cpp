@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
 	unsigned int temps[nombreMesure];
 	
 	// Objets utilisés
-	GestionMCP3208 mcp3208(CHANNEL_0, SPI_SPEED_50);
+	GestionMCP3208 mcp3208(CHANNEL_0, SPI_SPEED_MAX);
 	high_resolution_clock::time_point horloge;
 	high_resolution_clock::time_point initHorloge;
 	duration<double> time_span;
@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
 		horloge = high_resolution_clock::now();
 		time_span = duration_cast<chrono::duration<double>>(horloge - initHorloge);
 		// Stockage des mesures
-		mesures[compteur] = mcp3208.readTension(atoi(argv[1]), ALIM_33);
+		mesures[compteur] = mcp3208.readTension(atoi(argv[1]), ALIM_5);
 		temps[compteur] = time_span.count() * 1000000;
 		// Incrémentation du compteur de mesure
 		compteur++;
