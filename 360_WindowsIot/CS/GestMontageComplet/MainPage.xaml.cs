@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using Windows.Devices.Gpio;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -36,13 +37,6 @@ namespace GestMontageComplet
         private DispatcherTimer timerRed;
         private DispatcherTimer timerGreen;
         private DispatcherTimer timerRedGreen;
-
-        /// <summary>
-        /// Désactivation des timers quand on active un bouton
-        /// On fait comme ça parce que le programme plante si on
-        /// arrête un timer dans une interruption
-        /// </summary>
-        private bool bouton = false;
 
         /// <summary>
         /// Exécuté au chargement de la page
@@ -100,18 +94,15 @@ namespace GestMontageComplet
         /// <param name="e"></param>
         private void TimerRed_Tick(object sender, object e)
         {
-            if (!bouton)
+            if (_red.Read() == GpioPinValue.Low)
             {
-                if (_red.Read() == GpioPinValue.Low)
-                {
-                    _red.Write(GpioPinValue.High);
-                }
-                else
-                {
-                    _red.Write(GpioPinValue.Low);
-                }
+                _red.Write(GpioPinValue.High);
             }
-        }
+            else
+            {
+                _red.Write(GpioPinValue.Low);
+            }
+    }
 
         /// <summary>
         /// Appelé par le timer vert
@@ -121,16 +112,13 @@ namespace GestMontageComplet
         /// <param name="e"></param>
         private void TimerGreen_Tick(object sender, object e)
         {
-            if (!bouton)
+            if (_green.Read() == GpioPinValue.Low)
             {
-                if (_green.Read() == GpioPinValue.Low)
-                {
-                    _green.Write(GpioPinValue.High);
-                }
-                else
-                {
-                    _green.Write(GpioPinValue.Low);
-                }
+                _green.Write(GpioPinValue.High);
+            }
+            else
+            {
+                _green.Write(GpioPinValue.Low);
             }
         }
 
@@ -142,18 +130,15 @@ namespace GestMontageComplet
         /// <param name="e"></param>
         private void TimerRedGreen_Tick(object sender, object e)
         {
-            if (!bouton)
+            if (_green.Read() == GpioPinValue.Low)
             {
-                if (_green.Read() == GpioPinValue.Low)
-                {
-                    _green.Write(GpioPinValue.High);
-                    _red.Write(GpioPinValue.Low);
-                }
-                else
-                {
-                    _green.Write(GpioPinValue.Low);
-                    _red.Write(GpioPinValue.High);
-                }
+                _green.Write(GpioPinValue.High);
+                _red.Write(GpioPinValue.Low);
+            }
+            else
+            {
+                _green.Write(GpioPinValue.Low);
+                _red.Write(GpioPinValue.High);
             }
         }
 
@@ -164,11 +149,13 @@ namespace GestMontageComplet
         /// <param name="args"></param>
         private void _sw1_ValueChanged(GpioPin sender, GpioPinValueChangedEventArgs args)
         {
-            // Ne fonctionne pas, on n'arrête pas un timer dans une interruption
-            //timerGreen.Stop();
-            //timerRedGreen.Stop();
-            //timerRed.Stop();
-            bouton = true;
+            // A mettre en asynchrone, sinon ça plante le programme
+            var task = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                timerGreen.Stop();
+                timerRedGreen.Stop();
+                timerRed.Stop();
+            });
             _red.Write(GpioPinValue.High);
             _green.Write(GpioPinValue.Low);
             Debug.WriteLine(DateTime.Now.Ticks.ToString() + " _sw1_ValueChanged");
@@ -181,11 +168,13 @@ namespace GestMontageComplet
         /// <param name="args"></param>
         private void _sw2_ValueChanged(GpioPin sender, GpioPinValueChangedEventArgs args)
         {
-            // Ne fonctionne pas, on n'arrête pas un timer dans une interruption
-            //timerGreen.Stop();
-            //timerRedGreen.Stop();
-            //timerRed.Stop();
-            bouton = true;
+            // A mettre en asynchrone, sinon ça plante le programme
+            var task = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                timerGreen.Stop();
+                timerRedGreen.Stop();
+                timerRed.Stop();
+            });
             _red.Write(GpioPinValue.Low);
             _green.Write(GpioPinValue.High);
             Debug.WriteLine(DateTime.Now.Ticks.ToString() + " _sw2_ValueChanged");
@@ -202,8 +191,7 @@ namespace GestMontageComplet
             timerGreen.Stop();
             timerRedGreen.Stop();
             timerRed.Stop();
-            bouton = false;
-            _red.Write(GpioPinValue.High);
+             _red.Write(GpioPinValue.High);
             Debug.WriteLine(DateTime.Now.Ticks.ToString() + " OnRedBTN_Click");
         }
 
@@ -218,7 +206,6 @@ namespace GestMontageComplet
             timerGreen.Stop();
             timerRedGreen.Stop();
             timerRed.Stop();
-            bouton = false;
             _red.Write(GpioPinValue.Low);
             Debug.WriteLine(DateTime.Now.Ticks.ToString() + " OffRedBTN_Click");
         }
@@ -234,7 +221,6 @@ namespace GestMontageComplet
             timerGreen.Stop();
             timerRedGreen.Stop();
             timerRed.Stop();
-            bouton = false;
             _green.Write(GpioPinValue.High);
             Debug.WriteLine(DateTime.Now.Ticks.ToString() + " OnGreenBTN_Click");
         }
@@ -250,7 +236,6 @@ namespace GestMontageComplet
             timerGreen.Stop();
             timerRedGreen.Stop();
             timerRed.Stop();
-            bouton = false;
             _green.Write(GpioPinValue.Low);
             Debug.WriteLine(DateTime.Now.Ticks.ToString() + " OffGreenBTN_Click");
         }
@@ -265,7 +250,6 @@ namespace GestMontageComplet
             timerGreen.Stop();
             timerRedGreen.Stop();
             timerRed.Start();
-            bouton = false;
             Debug.WriteLine(DateTime.Now.Ticks.ToString() + " ClignRedBTN_Click");
         }
 
@@ -279,8 +263,7 @@ namespace GestMontageComplet
             timerRedGreen.Stop();
             timerRed.Stop();
             timerGreen.Start();
-            bouton = false;
-            Debug.WriteLine(DateTime.Now.Ticks.ToString() + " ClignGreenBTN_Click");
+             Debug.WriteLine(DateTime.Now.Ticks.ToString() + " ClignGreenBTN_Click");
         }
 
         /// <summary>
@@ -293,8 +276,33 @@ namespace GestMontageComplet
             timerGreen.Stop();
             timerRed.Stop();
             timerRedGreen.Start();
-            bouton = false;
             Debug.WriteLine(DateTime.Now.Ticks.ToString() + " ClignRedGreenBTN_Click");
         }
-     }
+
+        /// <summary>
+        /// Déchargement de la page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            // Arrêt timer
+            timerGreen.Stop();
+            timerGreen = null;
+            timerRed.Stop();
+            timerRed = null;
+            timerRedGreen.Stop();
+            timerRedGreen = null;
+
+            // Désactive les broches
+            _red.Dispose();
+            _red = null;
+            _green.Dispose(); ;
+            _green = null;
+            _sw1.Dispose(); ;
+            _sw1 = null;
+            _sw2.Dispose(); ;
+            _sw2 = null;
+        }
+    }
 }
