@@ -5,3 +5,4 @@
 - Visual Studio 2017
 - Pilotage d'une LED
 - Pilotage de LED et de switch
+- Pilotage d'un convertisseur I2C PCF8591
