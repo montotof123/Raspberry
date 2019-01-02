@@ -1,0 +1,32 @@
+﻿<Page
+    x:Class="Oscilloscope.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Oscilloscope"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
+    Loaded="Page_Loaded" 
+    Unloaded="Page_Unloaded">
+
+    <Grid x:Name="myGrid" PointerPressed="MyGrid_PointerPressed">
+        <TextBox BorderBrush="Transparent" IsReadOnly="True" HorizontalAlignment="Left" Margin="0,930,0,0" Text="0V" VerticalAlignment="Top"/>
+        <TextBox BorderBrush="Transparent" IsReadOnly="True" HorizontalAlignment="Left" Margin="0,750,0,0" Text="1V" VerticalAlignment="Top"/>
+        <TextBox BorderBrush="Transparent" IsReadOnly="True" HorizontalAlignment="Left" Margin="0,570,0,0" Text="2V" VerticalAlignment="Top"/>
+        <TextBox BorderBrush="Transparent" IsReadOnly="True" HorizontalAlignment="Left" Margin="0,390,0,0" Text="3V" VerticalAlignment="Top"/>
+        <TextBox BorderBrush="Transparent" IsReadOnly="True" HorizontalAlignment="Left" Margin="0,210,0,0" Text="4V" VerticalAlignment="Top"/>
+        <TextBox BorderBrush="Transparent" IsReadOnly="True" HorizontalAlignment="Left" Margin="0,30,0,0" Text="5V" VerticalAlignment="Top"/>
+        <TextBox x:Name="Min" HorizontalAlignment="Left" Margin="300,10,0,0" Text="0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Max" HorizontalAlignment="Left" Margin="500,10,0,0" Text="0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Frequence" HorizontalAlignment="Left" Margin="700,10,0,0" Text="0 Hz" VerticalAlignment="Top"/>
+        <ComboBox x:Name="Zoom" SelectedIndex ="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="900,10,0,0" SelectionChanged="Zoom_SelectionChanged">
+            <ComboBox.Items>
+                <ComboBoxItem Content="zoom x 1"/>
+                <ComboBoxItem Content="zoom x 10"/>
+                <ComboBoxItem Content="zoom x 100"/>
+            </ComboBox.Items>
+        </ComboBox>
+        <Button Content="Mesures" HorizontalAlignment="Left" Margin="1100,10,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+    </Grid>
+</Page>
