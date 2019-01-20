@@ -41,6 +41,6 @@ Programmes pour Raspberry PI 3
 - Amplificateur opérationnel programmable MCP6S28 (C++)
 - Générateur de signaux AD9833 (C++)
 - SenseHat (C, C++)
-- Robotique (Java, C++)
+- Robotique et drone (Java, C++, Python, Node.js)
 - Node.js (pilotage LED, mesure INA219, oscilloscope MCP3208)
 - Windows Iot
