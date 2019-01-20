@@ -14,6 +14,9 @@ TEST_BUZZER_SOURCES = tstBuzzer.cpp
 TEST_INTER_SOURCES = tstInter.cpp
 TEST_TIMESIGIR_SOURCES = tstTimeSigIR.cpp
 DECODE_TELECOMMANDE_SOURCES = decTelecommande.cpp
+TEST_LED_DUAL_COLOR_SOURCES = tstLEDDualColor.cpp
+TEST_LED_RGB_SOURCES = tstLEDRGB.cpp
+TEST_TIME_COMMUT_SOURCES = tstTimeSigCommutateur.cpp
 
 # Groupes de fichiers objets générés (un pour chaque fichier source)
 PCF8591_OBJECTS = $(PCF8591_SOURCES:.cpp=.o)
@@ -26,6 +29,10 @@ TEST_BUZZER_OBJECTS = $(TEST_BUZZER_SOURCES:.cpp=.o)
 TEST_INTER_OBJECTS = $(TEST_INTER_SOURCES:.cpp=.o)
 TEST_TIMESIGIR_OBJECTS = $(TEST_TIMESIGIR_SOURCES:.cpp=.o)
 DECODE_TELECOMMANDE_OBJECTS = $(DECODE_TELECOMMANDE_SOURCES:.cpp=.o)
+TEST_LED_DUAL_COLOR_OBJECTS = $(TEST_LED_DUAL_COLOR_SOURCES:.cpp=.o)
+TEST_LED_RGB_OBJECTS = $(TEST_LED_RGB_SOURCES:.cpp=.o)
+TEST_TIME_COMMUT_OBJECTS = $(TEST_TIME_COMMUT_SOURCES:.cpp=.o)
+
 
 # Les programmes a générer
 PCF8591_EXEC = tstPCF8591
@@ -39,13 +46,16 @@ BUZZER_EXEC = tstBuzzer
 INTER_EXEC = tstInter
 TIMESIGIR_EXEC = tstTimeSigIR
 DECODE_TELECOMMANDE_EXEC = decTelecommande
+LED_DUAL_COLOR_EXEC = tstLEDDualColor
+LED_RGB_EXEC = tstLEDRGB
+TIME_COMMUT_EXEC = tstTimeSigCommutateur
 
 # Cible particulière pour éviter des conflits de nom (inutile ici)
 .PHONY: mrproper clean
 
 # Cible par défaut si on demande seulement make
 # Construit les programmes cibles et enlève les fichiers objets à la fin
-all: target_pcf8591 target_detfire target_detfumee target_dethall target_detpluie target_detson target_joystick target_buzzer target_inter target_timesigir target_decTelecommande clean
+all: target_time_commut target_pcf8591 target_detfire target_detfumee target_dethall target_detpluie target_detson target_joystick target_buzzer target_inter target_timesigir target_decTelecommande target_dual_color target_led_rgb clean
 
 # Le programme 1
 target_pcf8591: $(PCF8591_EXEC)
@@ -59,6 +69,9 @@ target_buzzer: $(BUZZER_EXEC)
 target_inter: $(INTER_EXEC)
 target_timesigir: $(TIMESIGIR_EXEC)
 target_decTelecommande: $(DECODE_TELECOMMANDE_EXEC)
+target_dual_color: $(LED_DUAL_COLOR_EXEC)
+target_led_rgb: $(LED_RGB_EXEC)
+target_time_commut: $(TIME_COMMUT_EXEC)
 
 # Compilation du programme 1 $@ représente les fichiers objets et $^ le nom du programme
 $(PCF8591_EXEC): $(PCF8591_OBJECTS) $(TEST_PCF8591_OBJECTS)
@@ -104,6 +117,18 @@ $(TIMESIGIR_EXEC): $(GPIO_OBJECTS) $(TEST_TIMESIGIR_OBJECTS)
 $(DECODE_TELECOMMANDE_EXEC): $(GPIO_OBJECTS) $(DECODE_TELECOMMANDE_OBJECTS)
 	$(CC) $(CXXFLAGS) $(EXTRA_LIBS) -o $@ $^ 
 
+# Compilation du programme 1 $@ représente les fichiers objets et $^ le nom du programme
+$(LED_DUAL_COLOR_EXEC): $(GPIO_OBJECTS) $(TEST_LED_DUAL_COLOR_OBJECTS)
+	$(CC) $(CXXFLAGS) $(EXTRA_LIBS) -o $@ $^ 
+
+# Compilation du programme 1 $@ représente les fichiers objets et $^ le nom du programme
+$(LED_RGB_EXEC): $(GPIO_OBJECTS) $(TEST_LED_RGB_OBJECTS)
+	$(CC) $(CXXFLAGS) $(EXTRA_LIBS) -o $@ $^ 
+
+# Compilation du programme 1 $@ représente les fichiers objets et $^ le nom du programme
+$(TIME_COMMUT_EXEC): $(GPIO_OBJECTS) $(TEST_TIME_COMMUT_OBJECTS)
+	$(CC) $(CXXFLAGS) $(EXTRA_LIBS) -o $@ $^ 
+
 # Suppression des fichiers objets si ils existent
 clean:
 	@rm -f *.o
@@ -122,3 +147,6 @@ mrproper:
 	@rm -f $(INTER_EXEC)	
 	@rm -f $(TIMESIGIR_EXEC)	
 	@rm -f $(DECODE_TELECOMMANDE_EXEC)	
+	@rm -f $(LED_DUAL_COLOR_EXEC)	
+	@rm -f $(LED_RGB_EXEC)	
+	@rm -f $(TIME_COMMUT_EXEC)	
