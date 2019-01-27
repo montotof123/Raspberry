@@ -1,4 +1,4 @@
-Programmes pour Raspberry PI 3
+Programmes pour Raspberry PI 3B B+ (http://raspberrypi.pagesperso-orange.fr/)
 - Clignotement de LED (Python et C)
 - Gestion du PWN interne au Raspberry (C++)
 - Lecture de GPIO (C++, Node.js)
