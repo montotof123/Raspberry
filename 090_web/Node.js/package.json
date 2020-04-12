@@ -1,0 +1,10 @@
+{
+    "name": "MeteoGraphique",
+    "version": "1.0.0",
+    "dependencies": {
+        "http": "latest",
+        "fs": "latest",
+        "socket.io": "latest",
+        "pg": "latest"
+    }
+}

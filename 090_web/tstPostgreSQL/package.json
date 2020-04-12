@@ -1,0 +1,7 @@
+{
+    "name": "Test PostgreSQL",
+    "version": "0.1.0",
+    "dependencies": {
+        "pg": "latest"
+    }
+}
