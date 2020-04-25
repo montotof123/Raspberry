@@ -1,0 +1,29 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+
+// L'API repond en content-type - application/json
+app.use(bodyParser.json());
+
+// L'API repond en content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Charge le model (fait un CREATE TABLE IF NOT EXISTS)
+// ATTENTION: un parametre force: true dans la fonction sync fera un DROP TABLE IF EXISTS et detruira la table si elle existe
+const db = require("./app/models");
+db.sequelize.sync();
+
+// Message pour la racine du serveur
+// ex: http://192.168.1.100:8081
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to meteo application." });
+});
+
+// Charge les routes
+require("./app/routes/meteo.routes")(app);
+
+// Lance le serveur HTTP sur un port
+const PORT = process.env.PORT || 8081;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});

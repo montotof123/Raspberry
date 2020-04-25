@@ -1,0 +1,20 @@
+{
+    "name": "MeteoGraphique",
+    "version": "1.0.0",
+    "description": "Graphique des courbes de mesures météo envoyé par les clients MQTT sur la base PostgreSQL",
+    "license": "UNLICENSED",
+    "author": "Christophe",
+    "email": "raspberry.pi123@orange.fr",
+    "url": "https://raspberrypi.pagesperso-orange.fr/",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/montotof123"
+    },
+    "dependencies": {
+        "http": "latest",
+        "fs": "latest",
+        "socket.io": "latest",
+        "pg": "latest",
+        "axios": "latest"
+    }
+}

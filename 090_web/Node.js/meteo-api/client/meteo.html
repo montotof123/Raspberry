@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html" charset="UTF-8" http-equiv="content-type">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+		<title>Météo</title>
+	</head>
+	<body>
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+		<script src="/socket.io/socket.io.js"></script>
+
+		<div class="row">
+			<div class="col-lg-12 text-center badge badge-dark"><h2>Météo internet des objets</h2></div>
+		</div>	
+			
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-1"></div>
+				<div class="col-6 col-lg-2 text-center"><h4>Température</h4></div>
+				<div class="col-6 col-lg-2 text-center"><h4>Pression</h4></div>
+				<div class="col-6 col-lg-2 text-center"><h4>Humidité</h4></div>
+				<div class="d-none d-lg-block col-lg-2 text-center"><h4>Date</h4></div>
+				<div class="d-none d-lg-block col-lg-2 text-center"><h4>Heure</h4></div>
+			</div>
+			<div class="row">
+				<div class="col-6 col-lg-1"><input type="button" class="btn btn-success" value="Afficher mesures" id="afficheMesure" /></div>
+				<div class="col-2 col-lg-2 text-center"><input type="radio" id="temperature" name="mesure" value="temperature" checked></div>
+				<div class="col-2 col-lg-2 text-center"><input type="radio" id="pression" name="mesure" value="pression"></div>
+				<div class="col-2 col-lg-2 text-center"><input type="radio" id="humidite" name="mesure" value="humidite"></div>
+			</div>		
+			<div class="row">
+				<div class="col-6 col-lg-1"><h4>Min</h4></div>
+				<div class="col-6 col-lg-2 text-center"><input type="number" name="temperature_min" id="temperature_min" min="-20" max="50" value="10"/></div>
+				<div class="col-6 col-lg-2 text-center"><input type="number" name="pression_min" id="pression_min" min="950" max="1030" step="5" value="1010"/></div>
+				<div class="col-6 col-lg-2 text-center"><input type="number" name="humidite_min" id="humidite_min" min="0" max="100" value="0"/></div>
+				<div class="col-6 col-lg-2 text-center"><input type="date" name="date_min" id="date_min" min="2020-01-01"/></div>
+				<div class="col-6 col-lg-2 text-center"><input type="time" name="time_min" id="time_min" value="00:00"/></div>
+			</div>
+			<div class="row">
+				<div class="col-6 col-lg-1"><h4>Max</h4></div>
+				<div class="col-6 col-lg-2 text-center"><input type="number" name="temperature_max" id="temperature_max" min="-20" max="50" value="30"/></div>
+				<div class="col-6 col-lg-2 text-center"><input type="number" name="pression_max" id="pression_max" min="950" max="1030" step="5" value="1025"/></div>
+				<div class="col-6 col-lg-2 text-center"><input type="number" name="humidite_max" id="humidite_max" min="0" max="100" value="100"/></div>
+				<div class="col-6 col-lg-2 text-center"><input type="date" name="date_max" id="date_max" min="2020-01-01"/></div>
+				<div class="col-6 col-lg-2 text-center"><input type="time" name="time_max" id="time_max" value="23:59"/></div>
+			</div>
+		</div>
+		<canvas id="canvas" width="1" height="1"></canvas>
+		<script>
+			// Positionne la date du jour dans les input date min et max
+			const today = new Date();
+			let dd = today.getDate();
+			if(dd<10) {
+				dd = '0' + dd;
+			} 
+			let mm = today.getMonth() + 1; 
+			if(mm < 10) {
+				mm = '0' + mm;
+			} 
+			const yyyy = today.getFullYear();
+			$('#date_min').val(yyyy + '-' + mm + '-' + dd);
+			$('#date_max').val(yyyy + '-' + mm + '-' + dd);
+			
+			// Connexion au serveur en récupérant l'adresse IP indiquée dans l'URL du client
+            const socket = io.connect(document.location.href.substring( 0 ,document.location.href.lastIndexOf( "/" )));
+			socket.on('afficheMesure', function(mesure) {
+				// Récuperation et paramétrage du canvas
+				let canvas = document.getElementById("canvas");
+				let context = canvas.getContext("2d");
+				
+				// dimension de l'écran
+				let larg = $(window).width();
+				let haut = $(window).height();
+				
+				// Dimension du canvas
+				canvas.height = haut - 250;
+				canvas.width = larg - 30;
+				
+				// font gris
+				context.beginPath();
+				context.moveTo(0, 0);
+				context.lineTo(0, canvas.height);
+				context.lineTo(canvas.width, canvas.height);
+				context.lineTo(canvas.width, 0);
+				context.lineTo(0, 0);
+				context.fillStyle = "rgba(20, 20, 20, 0.3)";
+				context.fill();
+				
+				// entourage noir
+				context.beginPath();
+				context.moveTo(0, 0);
+				context.lineTo(0, canvas.height);
+				context.lineTo(canvas.width, canvas.height);
+				context.lineTo(canvas.width, 0);
+				context.lineTo(0, 0);
+				context.strokeStyle = "black";
+				context.stroke();
+				
+				// Calcul du pas des lignes horizontales en fonction de la mesure et des paramètres indiqués dans l'ihm
+				let pasHorizontal;
+				let minHorizontal;
+				let maxHorizontal;
+				let unite;
+				switch($("input[name='mesure']:checked").val()) {
+					case "temperature": 
+						if( $('#temperature_max').val() -  $('#temperature_min').val() > 10) {
+							pasHorizontal = 5;
+						} else {
+							pasHorizontal = 1;
+						}
+						minHorizontal = parseInt($('#temperature_min').val(), 10);
+						maxHorizontal = parseInt($('#temperature_max').val(), 10);
+						unite = '°';
+						break;
+					case "pression": 
+						if( $('#pression_max').val() -  $('#pression_min').val() > 10) {
+							pasHorizontal = 5;
+						} else {
+							pasHorizontal = 1;
+						}
+						minHorizontal = parseInt($('#pression_min').val(), 10);
+						maxHorizontal = parseInt($('#pression_max').val(), 10);
+						unite = ' hPa';
+						break;
+					case "humidite": 
+						if( $('#humidite_max').val() -  $('#humidite_min').val() > 10) {
+							pasHorizontal = 5;
+						} else {
+							pasHorizontal = 1;
+						}
+						minHorizontal = parseInt($('#humidite_min').val(), 10);
+						maxHorizontal = parseInt($('#humidite_max').val(), 10);
+						unite = ' %';
+						break;
+				}
+
+				// Tracé des lignes horizontales
+				let echelleHor = canvas.height / (maxHorizontal - minHorizontal)
+				for(let compteur = minHorizontal; compteur < maxHorizontal; compteur += pasHorizontal) {
+					context.beginPath();
+					context.moveTo(0, canvas.height - (compteur - minHorizontal) * echelleHor);
+					context.lineTo(canvas.width, canvas.height - (compteur - minHorizontal) * echelleHor);
+					context.strokeStyle = "red";
+					context.stroke();
+					context.font = "10pt Calibri,Geneva,Arial";
+					context.fillStyle = "red";
+					context.fillText(compteur + unite, 5, canvas.height - (compteur - minHorizontal) * echelleHor - 5);	
+				}
+
+				// Conversion des dates html en date javascript pour calculler le temps
+				let minDate = new Date();
+				let maxDate = new Date();
+				const dataMinDate =  $('#date_min').val().split('-');
+				const dataMaxDate =  $('#date_max').val().split('-');
+				const dataMinTime =  $('#time_min').val().split(':');
+				const dataMaxTime =  $('#time_max').val().split(':');
+				minDate.setFullYear(parseInt(dataMinDate[0], 10));
+				minDate.setMonth(parseInt(dataMinDate[1], 10) - 1);
+				minDate.setDate(parseInt(dataMinDate[2], 10));
+				minDate.setHours(parseInt(dataMinTime[0], 10));
+				minDate.setMinutes(parseInt(dataMinTime[1], 10));
+				maxDate.setFullYear(parseInt(dataMaxDate[0], 10));
+				maxDate.setMonth(parseInt(dataMaxDate[1], 10) - 1);
+				maxDate.setDate(parseInt(dataMaxDate[2], 10));
+				maxDate.setHours(parseInt(dataMaxTime[0], 10));
+				maxDate.setMinutes(parseInt(dataMaxTime[1], 10));
+				// Interval de temps de la courbe
+				const interval = (maxDate.getTime() - minDate.getTime()) / 1000;
+
+				// Calcul du pas et des bornes pour les lignes verticales en fonction du temps de mesure demandé
+				let pasVertical;
+				let minVertical;
+				const maxVertical = maxDate.getTime() / 1000;
+				if(interval <= 3600) {
+					// Une heure ou moins, interval de 5mn
+					pasVertical = 300;
+				} else if (interval <= 86400) {
+					// Un jour ou moins, interval d'une heure
+					pasVertical = 3600;
+				} else {
+					// plus d'un jour, interval de 12h
+					pasVertical = 43200;
+				}
+				minVertical = minDate.getTime() / 1000 + pasVertical - (minDate.getTime() / 1000) % pasVertical;
+
+				// Tracé des lignes verticales
+				let echelleVer = canvas.width / interval;
+				for(let compteur = minVertical; compteur <= maxVertical; compteur += pasVertical) {
+					context.beginPath();
+					context.moveTo((compteur - minDate.getTime() / 1000) * echelleVer, 0);
+					context.lineTo((compteur - minDate.getTime() / 1000) * echelleVer, canvas.height);
+					// Affichage de la date et de l'heure
+					context.strokeStyle = "yellow";
+					context.stroke();
+					context.font = "10pt Calibri,Geneva,Arial";
+					context.fillStyle = "yellow";
+					let dateAff = new Date();
+					dateAff.setTime(compteur * 1000);
+					let options = {hour: "numeric", minute: "numeric", hour12: false};
+					let valeur = new Intl.DateTimeFormat("fr-FR", options).format(dateAff);
+					context.fillText(valeur, (compteur - minDate.getTime() / 1000) * echelleVer + 3, 10);
+					options = {month: "2-digit", day: "2-digit"};
+					valeur = new Intl.DateTimeFormat("fr-FR", options).format(dateAff);
+					context.fillText(valeur, (compteur - minDate.getTime() / 1000) * echelleVer + 3, 22);
+				}
+				
+				// Tracé de la courbe des mesures
+				context.beginPath();
+				context.moveTo(((mesure[0].nbsec - minDate.getTimezoneOffset() * 60)) * echelleVer, canvas.height - (mesure[0].valeur - minHorizontal) * echelleHor);
+				for(let compteur = 0; compteur != mesure.length; compteur++) {
+					context.lineTo(((mesure[compteur].nbsec - minDate.getTimezoneOffset() * 60)) * echelleVer, canvas.height - (mesure[compteur].valeur - minHorizontal) * echelleHor);
+				}
+				context.strokeStyle = "green";
+				context.stroke();
+			}) 
+			
+			// Affichage des mesures lors d'un click sur le bouton afficheMesure
+			$('#afficheMesure').click(function () {
+				socket.emit('afficheMesure', {mesure: $("input[name='mesure']:checked").val(), temperature_min: $('#temperature_min').val(), pression_min: $('#pression_min').val(), humidite_min: $('#humidite_min').val(), date_min: $('#date_min').val(), time_min: $('#time_min').val(), temperature_max: $('#temperature_max').val(), pression_max: $('#pression_max').val(), humidite_max: $('#humidite_max').val(), date_max: $('#date_max').val(), time_max: $('#time_max').val()});
+            })
+		</script>
+	</body>
+</html>
