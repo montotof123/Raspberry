@@ -43,6 +43,5 @@ module.exports = (sequelize, Sequelize) => {
     // silent: true,
     underscored: false }
   );
-  console.log(Meteo);
   return Meteo;
 };

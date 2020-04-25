@@ -15,6 +15,8 @@ module.exports = app => {
   router.get("/currentTemperature", meteo.findCurrentTemperature);
   router.get("/currentPression", meteo.findCurrentPression);
   router.get("/currentHumidite", meteo.findCurrentHumidite);
+  // Route pour stocker une mesure
+  router.post("/", meteo.createMesures);
 
   // Route racine
   app.use("/api/meteo", router);
