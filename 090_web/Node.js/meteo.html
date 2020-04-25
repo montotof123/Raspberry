@@ -206,9 +206,9 @@
 				
 				// Tracé de la courbe des mesures
 				context.beginPath();
-				context.moveTo((mesure[0].nbsec) * echelleVer, canvas.height - (mesure[0].valeur - minHorizontal) * echelleHor);
+				context.moveTo(((mesure[0].nbsec - minDate.getTimezoneOffset() * 60)) * echelleVer, canvas.height - (mesure[0].valeur - minHorizontal) * echelleHor);
 				for(let compteur = 0; compteur != mesure.length; compteur++) {
-					context.lineTo((mesure[compteur].nbsec) * echelleVer, canvas.height - (mesure[compteur].valeur - minHorizontal) * echelleHor);
+					context.lineTo(((mesure[compteur].nbsec - minDate.getTimezoneOffset() * 60)) * echelleVer, canvas.height - (mesure[compteur].valeur - minHorizontal) * echelleHor);
 				}
 				context.strokeStyle = "green";
 				context.stroke();
