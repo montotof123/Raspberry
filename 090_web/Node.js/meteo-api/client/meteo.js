@@ -1,6 +1,5 @@
 ﻿const http = require('http');
 const fs = require('fs');
-const { Pool } = require("pg");
 const axios = require("axios");
 
 // Création du serveur web avec chargement du fichier html affiché au client
