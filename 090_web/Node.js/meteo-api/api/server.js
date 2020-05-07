@@ -1,6 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
 
 // L'API repond en content-type - application/json
 app.use(bodyParser.json());
