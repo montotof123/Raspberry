@@ -1,28 +1,10 @@
 {
-  "name": "nodejs-express-sequelize-postgresql",
-  "version": "1.0.0",
-  "description": "API pour le client meteo",
-  "main": "server.js",
-  "author": "Christophe",
-  "license": "UNLICENSED",
-  "email": "raspberry.pi123@orange.fr",
-  "url": "https://raspberrypi.pagesperso-orange.fr/",
-  "scripts": {
-    "test": "echo \"Error: pas de tests implémemtés\" && exit 1"
-  },
-  "keywords": [
-    "nodejs",
-    "express",
-    "sequelize",
-    "rest",
-    "api",
-    "postgresql"
-  ],
-  "dependencies": {
-    "body-parser": "latest",
-    "express": "latest",
-    "pg": "latest",
-    "pg-hstore": "latest",
-    "sequelize": "latest"
-  }
+    "name": "MeteoGraphique",
+    "version": "1.0.0",
+    "dependencies": {
+        "http": "latest",
+        "fs": "latest",
+        "socket.io": "latest",
+        "pg": "latest"
+    }
 }
