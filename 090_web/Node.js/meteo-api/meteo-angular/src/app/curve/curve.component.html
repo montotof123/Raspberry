@@ -1,0 +1,79 @@
+<div class="container-fluid">
+    <mat-radio-group (change)="radioChange($event)" class="row">
+        <mat-label class="col-6 col-lg-1">Type de courbe</mat-label>
+        <mat-radio-button value="temperature" class="col-6 col-lg-2">Température </mat-radio-button>
+        <mat-radio-button value="pression" class="col-6 col-lg-2">Pression </mat-radio-button>
+        <mat-radio-button value="humidite" class="col-6 col-lg-2">Humidite </mat-radio-button>
+    </mat-radio-group>
+    <div class="row">
+        <div class="col-6 col-lg-1 mt-3"><h3>Min</h3></div>
+        <div class="col-6 col-lg-2">  
+            <mat-form-field appearance="fill">
+                <mat-label>Température</mat-label>
+                <input matInput type="number" [(ngModel)]="temperatureMin" min="-20" max="50"/>
+            </mat-form-field>
+        </div>        
+        <div class="col-6 col-lg-2">  
+            <mat-form-field appearance="fill">
+                <mat-label>Pression</mat-label>
+                <input matInput type="number" [(ngModel)]="pressionMin" min="950" max="1030" step="5"/>
+            </mat-form-field>
+        </div>        
+        <div class="col-6 col-lg-2">  
+            <mat-form-field appearance="fill">
+                <mat-label>Humidité</mat-label>
+                <input matInput type="number" [(ngModel)]="humiditeMin" min="0" max="100"/>
+            </mat-form-field>
+        </div>        
+        <div class="col-6 col-lg-2">  
+            <mat-form-field appearance="fill">
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="date_Min" [(ngModel)]="dateMin"  min="2020-01-01">
+                <mat-datepicker-toggle matSuffix [for]="date_Min"></mat-datepicker-toggle>
+                <mat-datepicker #date_Min></mat-datepicker>
+            </mat-form-field>
+        </div>      
+        <div class="col-6 col-lg-2">  
+            <mat-form-field appearance="fill">
+                <mat-label>Time</mat-label>
+                <input matInput type="time" [(ngModel)]="timeMin"/>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 col-lg-1 mt-3"><h3>Max</h3></div>
+        <div class="col-6 col-lg-2">  
+            <mat-form-field appearance="fill">
+                <mat-label>Température</mat-label>
+                <input matInput type="number" [(ngModel)]="temperatureMax" min="-20" max="50"/>
+            </mat-form-field>
+        </div>        
+        <div class="col-6 col-lg-2">  
+            <mat-form-field appearance="fill">
+                <mat-label>Pression</mat-label>
+                <input matInput type="number" [(ngModel)]="pressionMax" min="950" max="1030" step="5"/>
+            </mat-form-field>
+        </div>        
+        <div class="col-6 col-lg-2">  
+            <mat-form-field appearance="fill">
+                <mat-label>Humidité</mat-label>
+                <input matInput type="number" [(ngModel)]="humiditeMax" min="0" max="100"/>
+            </mat-form-field>
+        </div>        
+        <div class="col-6 col-lg-2">  
+            <mat-form-field appearance="fill">
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="date_Max" [(ngModel)]="dateMax"  min="2020-01-01">
+                <mat-datepicker-toggle matSuffix [for]="date_Max"></mat-datepicker-toggle>
+                <mat-datepicker #date_Max></mat-datepicker>
+            </mat-form-field>
+        </div>        
+        <div class="col-6 col-lg-2">  
+            <mat-form-field appearance="fill">
+                <mat-label>Time</mat-label>
+                <input matInput type="time" [(ngModel)]="timeMax"/>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+<canvas #canvas width="500" height="300"></canvas>
