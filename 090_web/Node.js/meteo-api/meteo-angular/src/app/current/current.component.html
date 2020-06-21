@@ -1,0 +1,51 @@
+<h1 [ngClass]="{'alert text-center': true, 'alert-primary': temperature <= 0, 'alert-success': temperature > 0 && temperature < 20, 'alert-danger': temperature >= 20}">
+    {{ temperature }}°
+    <h3>
+        <span *ngIf="tendanceTemperature.getTendance() == 1">&uarr;</span>
+        <span *ngIf="tendanceTemperature.getTendance() == 2">&uarr;</span>
+        <span *ngIf="tendanceTemperature.getTendance() == -1">&darr;</span>
+        <span *ngIf="tendanceTemperature.getTendance() == -2">&darr;</span>
+    </h3>
+    <h2>
+        <span *ngIf="tendanceTemperature.getTendance() == 3">&uarr;</span>
+        <span *ngIf="tendanceTemperature.getTendance() == 4">&uarr;</span>
+        <span *ngIf="tendanceTemperature.getTendance() == -3">&darr;</span>
+        <span *ngIf="tendanceTemperature.getTendance() == -4">&darr;</span>
+    </h2>
+    <span *ngIf="tendanceTemperature.getTendance() > 4">&uarr;</span>
+    <span *ngIf="tendanceTemperature.getTendance() < -4">&darr;</span>
+</h1> 
+<h1 [ngClass]="{'alert text-center': true, 'alert-danger': pression <= 1000, 'alert-success': pression > 1000 && pression < 1020, 'alert-warning': pression >= 1020}">
+    {{ pression }} hPa
+    <h3>
+        <span *ngIf="tendancePression.getTendance() == 1">&uarr;</span>
+        <span *ngIf="tendancePression.getTendance() == 2">&uarr;</span>
+        <span *ngIf="tendancePression.getTendance() == -1">&darr;</span>
+        <span *ngIf="tendancePression.getTendance() == -2">&darr;</span>
+    </h3>
+    <h2>
+        <span *ngIf="tendancePression.getTendance() == 3">&uarr;</span>
+        <span *ngIf="tendancePression.getTendance() == 4">&uarr;</span>
+        <span *ngIf="tendancePression.getTendance() == -3">&darr;</span>
+        <span *ngIf="tendancePression.getTendance() == -4">&darr;</span>
+    </h2>
+    <span *ngIf="tendancePression.getTendance() > 4">&uarr;</span>
+    <span *ngIf="tendancePression.getTendance() < -4">&darr;</span>
+</h1>
+<h1 [ngClass]="{'alert text-center': true, 'alert-warning': humidite <= 30, 'alert-success': humidite > 30 && humidite < 60, 'alert-primary': humidite >= 60}">
+    {{ humidite }} %
+    <h3>
+        <span *ngIf="tendanceHumidite.getTendance() == 1">&uarr;</span>
+        <span *ngIf="tendanceHumidite.getTendance() == 2">&uarr;</span>
+        <span *ngIf="tendanceHumidite.getTendance() == -1">&darr;</span>
+        <span *ngIf="tendanceHumidite.getTendance() == -2">&darr;</span>
+    </h3>
+    <h2>
+        <span *ngIf="tendanceHumidite.getTendance() == 3">&uarr;</span>
+        <span *ngIf="tendanceHumidite.getTendance() == 4">&uarr;</span>
+        <span *ngIf="tendanceHumidite.getTendance() == -3">&darr;</span>
+        <span *ngIf="tendanceHumidite.getTendance() == -4">&darr;</span>
+    </h2>
+    <span *ngIf="tendanceHumidite.getTendance() > 4">&uarr;</span>
+    <span *ngIf="tendanceHumidite.getTendance() < -4">&darr;</span>
+</h1>
