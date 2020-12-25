@@ -1,7 +1,6 @@
 # Raspberry PI
 
 Projets pour Raspberry PI 
-Programmes pour Raspberry PI 3B B+ (http://raspberrypi.pagesperso-orange.fr/)
 - Clignotement de LED (Python et C)
 - Gestion du PWN interne au Raspberry (C++)
 - Lecture de GPIO (C++ librairies WiringPi et PIGPIO, Node.js)
@@ -57,5 +56,6 @@ Programmes pour Raspberry PI 3B B+ (http://raspberrypi.pagesperso-orange.fr/)
 - IA en Python
 
 http://raspberrypi.pagesperso-orange.fr
+
 https://raspberrypi.pagesperso-orange.fr/raspberry/raspberry.pdf
 
