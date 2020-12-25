@@ -1,3 +1,6 @@
+# Raspberry PI
+
+Projets pour Raspberry PI 
 Programmes pour Raspberry PI 3B B+ (http://raspberrypi.pagesperso-orange.fr/)
 - Clignotement de LED (Python et C)
 - Gestion du PWN interne au Raspberry (C++)
@@ -13,7 +16,8 @@ Programmes pour Raspberry PI 3B B+ (http://raspberrypi.pagesperso-orange.fr/)
 - MongoDB (Java)
 - Mini oscilloscope (C++, Java)
 - Fréquencemètre (C++, Node.js)
-- API (Java)
+- API (Java, Node.js, Angular)
+- Serveur MQTT
 - Testeur de piles (C++)
 - Gestion de servomoteurs (C++)
 - Convertisseur Digital-Analogique MCP4822 (C++)
@@ -22,23 +26,24 @@ Programmes pour Raspberry PI 3B B+ (http://raspberrypi.pagesperso-orange.fr/)
 - Couplage optique (C++)
 - Moteurs pas à pas (C++)
 - Contrôle de la vitesse d’un moteur avec barrière laser (C++)
-- Accéléromètre, gyromètre MCU6050 (C++)
-- Convertisseur analogique digital ADS1115 et AD7822(C++)
+- Accéléromètre, gyromètre MCU6050 et ADXL362 (C++)
+- Potentiomètre numérique AD5220, X9C103P, MCP41xxx, MCP42xxx, MCP45HVX1
+- Convertisseur analogique digital ADS1115, MCP3424 et AD7822(C++)
 - Modules divers (PCF8591, effet Hall, infraRouge, BMP180 etc...) (C++, Node.js)
 - Humidité DTH11, DTH22 (Node.js)
 - Mesure de température DS18B20 (C++)
 - EEPROM DS2431 (C++)
-- Mesure de luminosité BH1750 et TCL2561 (C et Python)
+- Mesure de luminosité BH1750 et TSL2561 (C et Python)
 - Baromètre, température, humidité BME280 (C++)
 - Télémètre à ultrason HC-SR04 (C++)
 - Afficheur à cristaux liquide 1602A avec et sans module I2C (C++)
 - Mesure de la couleur TCS34725 (C++)
 - Mesure de tensions et courants INA219, INA3221 (C++, Node.js)
 - Magnétomètre HMC5883, HMC5983 (C++)
-- Touches sensitives MPR121 (C++)
+- Touches sensitives MPR121, TTP223 et CAP1203 (C++)
 - Module RFID RC522 (C++)
 - GPS Neo6M (C, Node.js)
-- Horloge DS1302 (C++)
+- Horloge DS1302 et DS1307 (C++)
 - Relais (C, C++, Python, Linux, Scratch, Node.js)
 - Amplificateur opérationnel programmable MCP6S28 (C++)
 - Générateur de signaux AD9833 (C++)
@@ -48,3 +53,9 @@ Programmes pour Raspberry PI 3B B+ (http://raspberrypi.pagesperso-orange.fr/)
 - Node.js (pilotage LED, mesure INA219, oscilloscope MCP3208)
 - Caméra 8Mp (Node.js et motion)
 - Windows Iot, installation, fonctionnement et programmation (C#, C++)
+- Windows 10
+- IA en Python
+
+http://raspberrypi.pagesperso-orange.fr
+https://raspberrypi.pagesperso-orange.fr/raspberry/raspberry.pdf
+
