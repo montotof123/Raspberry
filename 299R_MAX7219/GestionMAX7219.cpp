@@ -567,7 +567,7 @@ GestionMAX7219::~GestionMAX7219()
 	Logger::log("DEBUG", "");
 };
 
-/*! \class GestionMAX7219 "GestionMAX7219.h"
+/*! \class GestionMAX7219 
  *  \brief Class de gestion du MAX7219.
  *
  *  \note https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf

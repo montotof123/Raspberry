@@ -403,7 +403,7 @@ GestionI2C::~GestionI2C()
 	Logger::log("DEBUG", __PRETTY_FUNCTION__);
 }
 
-/*! \class GestionI2C "GestionI2C.h"
+/*! \class GestionI2C 
  *  \brief Class de gestion de l'interface I2C.
  *
  */

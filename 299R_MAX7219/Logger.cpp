@@ -470,7 +470,7 @@ void Logger::stop(const char* pKey)
 	}
 }
 
-/*! \class Logger "Logger.h"
+/*! \class Logger 
  *  \brief Class de gestion des logs.
  *  \note  Toutes les méthodes sont static
  *

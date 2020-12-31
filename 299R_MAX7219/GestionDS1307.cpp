@@ -211,7 +211,7 @@ GestionDS1307::~GestionDS1307(void)
 	Logger::log("DEBUG", "<-- virtual GestionDS1307::~GestionDS1307(void)");
 }
 
-/*! \class GestionDS1307 "GestionDS1307.h"
+/*! \class GestionDS1307
  *  \brief Class de gestion du DS1307.
  *  \note https://datasheets.maximintegrated.com/en/ds/DS1307.pdf
  *

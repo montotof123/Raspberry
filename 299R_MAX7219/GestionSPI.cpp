@@ -198,7 +198,7 @@ GestionSpi::~GestionSpi()
 	Logger::log("DEBUG", __PRETTY_FUNCTION__);
 }
 
-/*! \class GestionSpi "GestionSPI.h"
+/*! \class GestionSpi 
  *  \brief Class de gestion de l'interface SPI.
  *
  */

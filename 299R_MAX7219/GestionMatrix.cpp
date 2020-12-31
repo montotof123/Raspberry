@@ -225,7 +225,7 @@ GestionMatrix::~GestionMatrix()
 	Logger::log("DEBUG", "");
 };
 
-/*! \class GestionMatrix "GestionMatrix.h"
+/*! \class GestionMatrix 
  *  \brief Class pour l'affichage sur les matrices à base de MAX7219.
  *
  */
