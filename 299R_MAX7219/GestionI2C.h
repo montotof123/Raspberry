@@ -1,11 +1,11 @@
-/***************************************************************
+/*!
  *   \file    GestionI2C.h
  *   \brief   Entete de la classe de gestion de l'interface I2C
  *   \note    Version utilisant la librairie pigpio
  *   \author  Totof (raspberry.pi123@orange.fr)
  *   \version 1.0
  *   \date    23/11/2020
- ***************************************************************/
+ */
  
 #ifndef GESTIONI2C_H_
 #define GESTIONI2C_H_

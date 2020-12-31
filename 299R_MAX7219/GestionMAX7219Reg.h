@@ -1,10 +1,10 @@
-/*********************************************
+/*!
  *   \file   GestionMAX7219Reg.h
  *   \brief  Registres du MAX7219.
  *   \author Totof (raspberry.pi123@orange.fr)
  *   \version 1.0
  *   \date 28/12/2020
- ********************************************/
+ */
 
 #ifndef __MAX7219REG_H__
 #define __MAX7219REG_H__

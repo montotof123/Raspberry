@@ -1,10 +1,10 @@
-/**************************************************************************
+/*!
  *   \file    GestionMatrix.h
  *   \brief   Entete de la classe de gestion des matrices à base de MAX7219.
  *   \author  Totof (raspberry.pi123@orange.fr)
  *   \version 1.0
  *   \date    29/12/2020
- **************************************************************************/
+ */
  
 #ifndef GESTIONMATRIX_H_
 #define GESTIONMATRIX_H_

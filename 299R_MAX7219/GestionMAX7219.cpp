@@ -1,10 +1,10 @@
-/*********************************************
+/*!
  *   \file    GestionMAX7219.cpp
  *   \brief   Classe de gestion du MAX7219.
  *   \author  Totof (raspberry.pi123@orange.fr)
  *   \version 1.0
  *   \date    28/12/2020
- ********************************************/
+ */
 
 #include "GestionMAX7219.h"
 #include "GestionMAX7219Reg.h"

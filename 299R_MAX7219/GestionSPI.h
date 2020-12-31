@@ -1,11 +1,11 @@
-/***************************************************************
+/*!
  *   \file    GestionSPI.h
  *   \brief   Entete de la classe de gestion de l'interface SPI
  *   \note    Version utilisant la librairie pigpio
  *   \author  Totof (raspberry.pi123@orange.fr)
  *   \version 1.0
  *   \date    22/08/2020
- ***************************************************************/
+ */
  
 #ifndef GESTIONSPI_H_
 #define GESTIONSPI_H_

@@ -1,10 +1,10 @@
-/*****************************************************************
+/*!
  *   \file    Chiffres.h
  *   \brief   Liste des caractères pour affichage sur les matrices
  *   \author  Totof (raspberry.pi123@orange.fr)
  *   \version 1.0
  *   \date    25/12/2020
- ****************************************************************/
+ */
  
 #ifndef Chiffres_h
 #define Chiffres_h

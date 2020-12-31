@@ -1,10 +1,10 @@
-/***************************************************************
+/*!
  *   \file    GestionDS1307.h
  *   \brief   Entete de la classe de gestion de l'horloge DS1307.
  *   \author  Totof (raspberry.pi123@orange.fr)
  *   \version 1.0
  *   \date    22/01/2020
- ****************************************************************/
+ */
  
 #ifndef GESTIONDS1307_H_
 #define GESTIONDS1307_H_

@@ -1,11 +1,11 @@
-/**************************************************
+/*!
  *   \file    GestionI2C.cpp
  *   \brief   Classe de gestion de l'interface I2C
  *   \note    Version utilisant la librairie pigpio
  *   \author  Totof (raspberry.pi123@orange.fr)
  *   \version 1.0
  *   \date    09/02/2020
- **************************************************/
+ */
  
 #include <pigpio.h>
 #include <unistd.h>

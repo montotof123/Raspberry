@@ -1,10 +1,10 @@
-/***************************************************
+/*!
  *   \file    GestionDS1307.cpp
  *   \brief   Classe de gestion de l'horloge DS1307.
  *   \author  Totof (raspberry.pi123@orange.fr)
  *   \version 1.0
  *   \date    09/02/2020
- ***************************************************/
+ */
  
 #include "GestionDS1307.h"
 #include "Logger.h"

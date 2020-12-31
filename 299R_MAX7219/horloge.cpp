@@ -1,10 +1,10 @@
-/*********************************************************************
+/*!
  *   \file    horloge.cpp
  *   \brief   Programme affichant l'heure d'un DS1307 sur les matrices
  *   \author  Totof (raspberry.pi123@orange.fr)
  *   \version 1.0
  *   \date    30/12/2020
- ********************************************************************/
+ */
  
 #include <iostream>
 #include <pigpio.h>

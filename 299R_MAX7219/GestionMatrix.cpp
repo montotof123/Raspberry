@@ -1,10 +1,10 @@
-/************************************************************
+/*!
  *   \file    GestionMatrix.cpp
  *   \brief   Classe de gestion des matrices à base de MAX7219.
  *   \author  Totof (raspberry.pi123@orange.fr)
  *   \version 1.0
  *   \date    28/12/2020
- *************************************************************/
+ */
 
 #include <pigpio.h>
 

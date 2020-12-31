@@ -1,10 +1,10 @@
-/**********************************************
+/*!
  *   \file    Logger.cpp
  *   \brief   Classe de gestion des log
  *   \author  Totof (raspberry.pi123@orange.fr)
  *   \version 1.0
  *   \date    24/07/2019
- **********************************************/
+ */
  
 #include <stdlib.h>
 
