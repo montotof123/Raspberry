@@ -25,7 +25,7 @@ const server = http.createServer(function(req, res) {
 });
 
 // A mettre aprés la création du serveur
-const io = require('socket.io').listen(server); 
+const io = require('socket.io')(server); 
 
 // Lancement de l'écoute des actions
 io.sockets.on('connect', function (socket) {
